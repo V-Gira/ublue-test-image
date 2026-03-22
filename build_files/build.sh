@@ -2,6 +2,12 @@
 
 set -ouex pipefail
 
+### Install staged filesystem content
+
+# Merge local system_files and the upstream brew payload into the image root.
+cp -a /ctx/system_files/. /
+rm -f /.gitkeep
+
 ### Install packages
 
 # Packages can be installed from any enabled yum repo on the image.
@@ -11,7 +17,6 @@ set -ouex pipefail
 
 # this installs a package from fedora repos
 dnf5 install -y kitty
-dnf5 remove -y powertop
 
 # Use a COPR Example:
 #
@@ -22,4 +27,4 @@ dnf5 remove -y powertop
 
 #### Example for enabling a System Unit File
 
-# systemctl enable podman.socket
+systemctl preset brew-setup.service brew-update.timer brew-upgrade.timer

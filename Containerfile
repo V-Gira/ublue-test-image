@@ -1,9 +1,15 @@
 # Allow build scripts to be referenced without being copied into the final image
+ARG BREW_IMAGE="ghcr.io/ublue-os/brew:latest"
+
+FROM ${BREW_IMAGE} AS brew
+
 FROM scratch AS ctx
-COPY build_files /
+COPY /system_files /system_files
+COPY /build_files /build_files
+COPY --from=brew /system_files /system_files
 
 # Base Image
-FROM ghcr.io/ublue-os/bluefin:stable
+FROM ghcr.io/ublue-os/silverblue-main:latest
 
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:latest
@@ -33,7 +39,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
-    /ctx/build.sh
+    /ctx/build_files/build.sh
     
 ### LINTING
 ## Verify final image and contents are correct.
