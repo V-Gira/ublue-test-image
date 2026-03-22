@@ -2,6 +2,12 @@
 
 set -ouex pipefail
 
+### Install staged filesystem content
+
+# Merge local system_files and the upstream brew payload into the image root.
+cp -a /ctx/system_files/. /
+rm -f /.gitkeep
+
 ### Install packages
 
 # Packages can be installed from any enabled yum repo on the image.
@@ -21,4 +27,4 @@ dnf5 install -y kitty
 
 #### Example for enabling a System Unit File
 
-systemctl enable brew-setup.service
+systemctl preset brew-setup.service brew-update.timer brew-upgrade.timer

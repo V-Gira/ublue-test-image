@@ -130,6 +130,12 @@ The [Containerfile](./Containerfile) defines the operations used to customize th
 
 The [build.sh](./build_files/build.sh) file is called from your Containerfile. It is the best place to install new packages or make any other customization to your system. There are customization examples contained within it for your perusal.
 
+## Homebrew Integration
+
+This image consumes the upstream [`ghcr.io/ublue-os/brew:latest`](https://github.com/ublue-os/brew) payload during the build. Its `system_files` content is merged into the final image so the Homebrew setup service and shell integration are present in the deployed system.
+
+On first boot, `brew-setup.service` extracts Homebrew to `/var/home/linuxbrew/.linuxbrew`. This image also enables `brew-update.timer` and `brew-upgrade.timer`, matching the upstream maintenance behavior for keeping Homebrew itself and installed formulae up to date.
+
 ## build.yml
 
 The [build.yml](./.github/workflows/build.yml) Github Actions workflow creates your custom OCI image and publishes it to the Github Container Registry (GHCR). By default, the image name will match the Github repository name. There are several environment variables at the start of the workflow which may be of interest to change.

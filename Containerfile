@@ -1,8 +1,12 @@
 # Allow build scripts to be referenced without being copied into the final image
+ARG BREW_IMAGE="ghcr.io/ublue-os/brew:latest"
+
+FROM ${BREW_IMAGE} AS brew
+
 FROM scratch AS ctx
 COPY /system_files /system_files
 COPY /build_files /build_files
-COPY --from=ghcr.io/ublue-os/brew:latest /system_files /system_files
+COPY --from=brew /system_files /system_files
 
 # Base Image
 FROM ghcr.io/ublue-os/silverblue-main:latest
