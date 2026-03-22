@@ -11,7 +11,6 @@ set -ouex pipefail
 
 # this installs a package from fedora repos
 dnf5 install -y kitty
-dnf5 remove -y powertop
 
 # Use a COPR Example:
 #
