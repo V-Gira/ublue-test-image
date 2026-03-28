@@ -20,10 +20,10 @@ dnf5 install -y kitty
 
 # Use a COPR Example:
 #
-# dnf5 -y copr enable ublue-os/staging
-# dnf5 -y install package
+dnf5 -y copr enable alternateved/keyd
+dnf5 -y install keyd
 # Disable COPRs so they don't end up enabled on the final image:
-# dnf5 -y copr disable ublue-os/staging
+dnf5 -y copr disable alternateved/keyd
 
 #### Example for enabling a System Unit File
 
