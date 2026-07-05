@@ -27,6 +27,7 @@ COPR_REPOS=(
   tofik/sway
   ulysg/xwayland-satellite
   yalter/niri
+  alternateved/keyd
 )
 for repo in "${COPR_REPOS[@]}"; do
   # Try to enable the repo, but don't fail the build if it doesn't support this Fedora version
@@ -50,16 +51,12 @@ NIRI_PKGS=(
   mako
   waybar
   xwayland-satellite
-  gnome-keyring
-  wireplumber
-  xdg-desktop-portal-gnome
-  xdg-desktop-portal-gtk
 )
 
 ADDITIONAL_SYSTEM_APPS=(
   kitty
   kitty-terminfo
-  alternateved/keyd
+  keyd
 )
 
 # we do all package installs in one rpm-ostree command
