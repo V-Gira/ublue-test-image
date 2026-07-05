@@ -67,6 +67,7 @@ ADDITIONAL_SYSTEM_APPS=(
   kitty
   kitty-terminfo
   keyd
+  zsh
 )
 
 # we do all package installs in one rpm-ostree command
@@ -75,6 +76,35 @@ log "Installing packages using dnf5..."
 dnf5 install --setopt=install_weak_deps=False -y \
   "${NIRI_PKGS[@]}" \
   "${ADDITIONAL_SYSTEM_APPS[@]}"
+
+#######################################################################
+## Remove Packages
+#######################################################################
+
+EXCLUDED_PACKAGES=(
+  cosign
+  fedora-bookmarks
+  fedora-chromium-config
+  fedora-chromium-config-gnome
+  firefox
+  firefox-langpacks
+  gnome-extensions-app
+  gnome-shell-extension-background-logo
+  gnome-software
+  gnome-software-rpm-ostree
+  gnome-terminal-nautilus
+  yelp
+)
+
+# Remove excluded packages if they are installed
+if [[ "${#EXCLUDED_PACKAGES[@]}" -gt 0 ]]; then
+  readarray -t INSTALLED_EXCLUDED < <(rpm -qa --queryformat='%{NAME}\n' "${EXCLUDED_PACKAGES[@]}" 2>/dev/null || true)
+  if [[ "${#INSTALLED_EXCLUDED[@]}" -gt 0 ]]; then
+    dnf -y remove "${INSTALLED_EXCLUDED[@]}"
+  else
+    echo "No excluded packages found to remove."
+  fi
+fi
 
 #######################################################################
 ### Disable repositeories so they aren't cluttering up the final image
