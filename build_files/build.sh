@@ -31,6 +31,7 @@ COPR_REPOS=(
   errornointernet/packages
   errornointernet/quickshell
   leloubil/wl-clip-persist
+  lionheartp/Hyprland
   tofik/sway
   ulysg/xwayland-satellite
   yalter/niri
@@ -59,6 +60,7 @@ NIRI_PKGS=(
   xwayland-satellite
   quickshell
   dms
+  noctalia-git
 )
 
 ADDITIONAL_SYSTEM_APPS=(
