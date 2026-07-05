@@ -25,13 +25,15 @@ rm -f /.gitkeep
 
 log "Enable Copr repos..."
 COPR_REPOS=(
+  alternateved/keyd
+  avengemedia/dms
   erikreider/SwayNotificationCenter # for swaync
   errornointernet/packages
+  errornointernet/quickshell
   leloubil/wl-clip-persist
   tofik/sway
   ulysg/xwayland-satellite
   yalter/niri
-  alternateved/keyd
 )
 for repo in "${COPR_REPOS[@]}"; do
   # Try to enable the repo, but don't fail the build if it doesn't support this Fedora version
@@ -55,6 +57,8 @@ NIRI_PKGS=(
   mako
   waybar
   xwayland-satellite
+  quickshell
+  dms
 )
 
 ADDITIONAL_SYSTEM_APPS=(
