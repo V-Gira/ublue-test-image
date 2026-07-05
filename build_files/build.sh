@@ -2,6 +2,10 @@
 
 set -ouex pipefail
 
+log() {
+  echo "=== $* ==="
+}
+
 ### Install staged filesystem content
 
 # Merge local system_files and the upstream brew payload into the image root.
