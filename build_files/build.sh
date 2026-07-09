@@ -26,11 +26,7 @@ rm -f /.gitkeep
 log "Enable Copr repos..."
 COPR_REPOS=(
   alternateved/keyd
-  erikreider/SwayNotificationCenter # for swaync
-  errornointernet/packages
-  leloubil/wl-clip-persist
   lionheartp/Hyprland
-  tofik/sway
   ulysg/xwayland-satellite
   yalter/niri
 )
