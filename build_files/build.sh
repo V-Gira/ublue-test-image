@@ -26,10 +26,8 @@ rm -f /.gitkeep
 log "Enable Copr repos..."
 COPR_REPOS=(
   alternateved/keyd
-  avengemedia/dms
   erikreider/SwayNotificationCenter # for swaync
   errornointernet/packages
-  errornointernet/quickshell
   leloubil/wl-clip-persist
   lionheartp/Hyprland
   tofik/sway
@@ -52,14 +50,9 @@ done
 # are prebundled inside our parent image.
 NIRI_PKGS=(
   niri
-  swaylock
   brightnessctl
-  fuzzel
   mako
-  waybar
   xwayland-satellite
-  quickshell
-  dms
   noctalia-git
 )
 
@@ -68,6 +61,8 @@ ADDITIONAL_SYSTEM_APPS=(
   kitty-terminfo
   keyd
   zsh
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 # we do all package installs in one rpm-ostree command
